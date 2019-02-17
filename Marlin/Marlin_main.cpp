@@ -8538,7 +8538,7 @@ inline void gcode_M109() {
     #ifdef ANYCUBIC_TFT_MODEL
       AnycubicTFT.CommandScan();
     #endif
-    
+
     #if TEMP_RESIDENCY_TIME > 0
 
       const float temp_diff = ABS(target_temp - temp);
@@ -8577,10 +8577,10 @@ inline void gcode_M109() {
   #ifdef ANYCUBIC_TFT_MODEL
   AnycubicTFT.HeatingDone();
   #endif
-  
   #if DISABLED(BUSY_WHILE_HEATING)
     KEEPALIVE_STATE(IN_HANDLER);
   #endif
+
 }
 
 #if HAS_HEATED_BED
@@ -8691,11 +8691,12 @@ inline void gcode_M109() {
           }
         }
       #endif
-      
+
+
       #ifdef ANYCUBIC_TFT_MODEL
       AnycubicTFT.CommandScan();
       #endif
-      
+
       #if TEMP_BED_RESIDENCY_TIME > 0
 
         const float temp_diff = ABS(target_temp - temp);
@@ -8723,11 +8724,11 @@ inline void gcode_M109() {
       }
 
     } while (wait_for_heatup && TEMP_BED_CONDITIONS);
-    
+
     #ifdef ANYCUBIC_TFT_MODEL
     AnycubicTFT.BedHeatingDone();
     #endif
-    
+
     if (wait_for_heatup) lcd_reset_status();
     #if DISABLED(BUSY_WHILE_HEATING)
       KEEPALIVE_STATE(IN_HANDLER);
@@ -8927,7 +8928,7 @@ inline void gcode_M111() {
     #if ENABLED(ULTIPANEL)
       lcd_reset_status();
     #endif
-    
+
     #ifdef ANYCUBIC_TFT_MODEL
     AnycubicTFT.CommandScan();
     #endif
@@ -8963,7 +8964,7 @@ inline void gcode_M81() {
   #if ENABLED(ULTIPANEL)
     LCD_MESSAGEPGM(MACHINE_NAME " " MSG_OFF ".");
   #endif
-  
+
   #ifdef ANYCUBIC_TFT_MODEL
   AnycubicTFT.CommandScan();
   #endif
@@ -14763,7 +14764,7 @@ void manage_inactivity(const bool ignore_stepper_queue/*=false*/) {
   #if ENABLED(FILAMENT_RUNOUT_SENSOR)
     runout.run();
   #endif
-  
+
   #if ENABLED(ANYCUBIC_TFT_MODEL) && ENABLED(ANYCUBIC_FILAMENT_RUNOUT_SENSOR)
   AnycubicTFT.FilamentRunout();
   #endif
@@ -14971,7 +14972,7 @@ void idle(
 #ifdef ANYCUBIC_TFT_MODEL
   AnycubicTFT.CommandScan();
 #endif
-  
+
   lcd_update();
 
   host_keepalive();
@@ -15028,7 +15029,7 @@ void kill(const char* lcd_msg) {
   #else
     UNUSED(lcd_msg);
   #endif
-  
+
   #ifdef ANYCUBIC_TFT_MODEL
     // Kill AnycubicTFT
     AnycubicTFT.KillTFT();
@@ -15123,7 +15124,7 @@ void setup() {
   MYSERIAL0.begin(BAUDRATE);
   SERIAL_PROTOCOLLNPGM("start");
   SERIAL_ECHO_START();
-  
+
   #ifdef ANYCUBIC_TFT_MODEL
     // Setup AnycubicTFT
     AnycubicTFT.Setup();
